@@ -161,6 +161,23 @@ main {
   margin-top: 0;
 }
 
+@media (max-width: 640px) {
+  .ShowDetails {
+    display: block;
+  }
+  .ShowDetails img {
+    max-width: 100%;
+    margin: 0 auto 1.5rem;
+  }
+  .ShowDetails_Right {
+    text-align: center;
+    text-wrap: balance;
+    text-wrap: pretty;
+    max-width: 26rem;
+    margin: auto;
+  }
+}
+
 .Back {
   margin-top: 2rem;
   display: block;
