@@ -1,30 +1,59 @@
-# React + TypeScript + Vite
+# TV Shows React App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This ReactJS application displays information about TV shows using the TVMaze API. It consists of two screens: the first screen lists TV shows, and the second screen provides detailed information about a selected show.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Fetches data from the [TVMaze API](https://api.tvmaze.com/search/shows?q=all).
+- Displays a list of TV shows with images and names on the first screen.
+- Allows users to click on a "View Summary" button to navigate to a second screen with detailed information about the selected show.
+- On the second screen, users can view the show's name, image, summary, and book a movie ticket.
 
-## Expanding the ESLint configuration
+## Screenshots
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+![TV Shows List](screenshots/shows-list.png)
 
-- Configure the top-level `parserOptions` property like this:
+![Show Details](screenshots/show-details.png)
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Setup
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. Clone the repository.
+
+   ```bash
+   git clone https://github.com/avisek/tv-shows-app
+   cd tv-shows-app
+   ```
+
+2. Install dependencies.
+
+   ```bash
+   npm install
+   ```
+
+3. Run the app.
+
+   ```bash
+   npm run dev
+   ```
+   Open http://localhost:3000 in your browser.
+
+## Technologies Used
+
+- **ReactJS**: JavaScript library for building user interfaces.
+- **React Router**: Declarative routing for React.js applications.
+- **TypeScript**: To ensure type safety and robust code.
+- **SCSS**: Styling the components.
+
+## Dependencies
+
+- `react-router-dom`: For handling navigation.
+- `@tanstack/react-query`: For caching the API responses.
+- `axios`: For fetching the shows from TVMaze API.
+
+## Deployment
+
+https://avisek.github.io/tv-shows-app
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
