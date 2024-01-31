@@ -8,7 +8,7 @@ export default function Details() {
   if (isLoading) {
     return (
       <div className="Details-loading">
-        <h2>Loading Show Details...</h2>
+        <p>Loading Show Details...</p>
       </div>
     )
   }
@@ -38,9 +38,10 @@ export default function Details() {
   return (
     <div className="ShowDetails">
       <h2>{show.name}</h2>
-      <img src={show.image?.original} alt={show.name} />
-      <p>{show.summary}</p>
+      <img src={show.image?.original} alt={show.name}/>
+      <div dangerouslySetInnerHTML={{ __html: show.summary }}></div>
       <button>Book Movie Ticket</button>
+      <Link to="/" className="Back">Back</Link>
     </div>
   )
 }
