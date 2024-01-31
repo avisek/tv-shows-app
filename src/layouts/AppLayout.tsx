@@ -1,15 +1,15 @@
-import { Outlet, NavLink } from "react-router-dom"
+import { Outlet, NavLink } from 'react-router-dom'
 
 export default function AppLayout() {
   return (
     <div className="AppLayout">
-      {/* <header>
+      <header>
         <NavLink to="/">
           <h1>TV Shows</h1>
         </NavLink>
-      </header> */}
+      </header>
       <main>
-        <Outlet />
+        <Outlet/>
       </main>
     </div>
   )
