@@ -1,5 +1,6 @@
 import {
   Link,
+  LoaderFunctionArgs,
   useLoaderData, useRouteError,
 } from 'react-router-dom'
 import { Show, TVShow } from './Shows'
@@ -27,12 +28,9 @@ export default function Details() {
   )
 }
 
+
 // Data loader
-export async function detailsLoader({
-  params,
-}: {
-  params: { showId: string }
-}): Promise<Show | null> {
+export async function detailsLoader({ params }: LoaderFunctionArgs): Promise<Show | null> {
   const { showId } = params
   
   try {
