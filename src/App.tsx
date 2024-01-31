@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom'
 
 // Layouts
-import AppLayout from './layouts/RootLayout'
+import AppLayout from './layouts/AppLayout'
 
 // Pages
 import Shows from './pages/Shows'
