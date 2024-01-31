@@ -37,11 +37,15 @@ export default function Details() {
   
   return (
     <div className="ShowDetails">
-      <h2>{show.name}</h2>
-      <img src={show.image?.original} alt={show.name}/>
-      <div dangerouslySetInnerHTML={{ __html: show.summary }}></div>
-      <button>Book Movie Ticket</button>
-      <Link to="/" className="Back">Back</Link>
+      <div className="ShowDetails_Left">
+        <img src={show.image?.original} alt={show.name}/>
+      </div>
+      <div className="ShowDetails_Right">
+        <h2>{show.name}</h2>
+        <div dangerouslySetInnerHTML={{ __html: show.summary }}></div>
+        <button>Book Movie Ticket</button>
+        <Link to="/" className="Back">Back</Link>
+      </div>
     </div>
   )
 }

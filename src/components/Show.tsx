@@ -9,7 +9,7 @@ export default function Show({ show }: ShowItemProps) {
   return (
     <div className="Show">
       <div className="Show_Preview">
-        <img src={show.show.image?.medium} alt={show.show.name}/>
+        <img src={show.show.image?.medium} alt={show.show.name} />
       </div>
       <div className="Show_Info">
         <h3>{show.show.name}</h3>
