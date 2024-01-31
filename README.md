@@ -11,9 +11,16 @@ This ReactJS application displays information about TV shows using the TVMaze AP
 
 ## Screenshots
 
-![TV Shows List](screenshots/shows-list.png)
-
-![Show Details](screenshots/show-details.png)
+<table>
+  <tr>
+    <td>
+      <img src="./screenshots/localhost_3000_(Nest Hub Max).png"/>
+    </td>
+    <td>
+      <img src="./screenshots/localhost_3000_(Nest Hub Max) (1).png"/>
+    </td>
+  </tr>
+</table>
 
 ## Setup
 
