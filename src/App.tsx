@@ -9,8 +9,8 @@ import {
 import AppLayout from './layouts/AppLayout'
 
 // Pages
-import Shows from './pages/Shows'
-import Details from './pages/Details'
+import Shows, { ShowsError, showsLoader } from './pages/Shows'
+import Details, { DetailsError, detailsLoader } from './pages/Details'
 import NotFound from './pages/NotFound'
 
 import './App.scss'
@@ -18,8 +18,13 @@ import './App.scss'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<AppLayout/>}>
-      <Route index element={<Shows/>}/>
-      <Route path="details" element={<Details/>}/>
+      <Route
+        index
+        element={<Shows/>}
+        loader={showsLoader}
+        errorElement={<ShowsError/>}
+     />
+      <Route path=":showId" element={<Details/>} loader={detailsLoader} errorElement={<DetailsError/>}/>
       <Route path="*" element={<NotFound/>}/>
     </Route>,
   ),

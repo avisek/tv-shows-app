@@ -1,5 +1,5 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  readonly PUBLIC_BACKEND_API_URL: string
+  readonly PUBLIC_TVMAZE_SHOWS_API_URL: string
 }

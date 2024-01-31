@@ -1,23 +1,60 @@
-import { useState } from 'react'
-import { Navigate, useSearchParams } from 'react-router-dom'
+import {
+  Link,
+  useLoaderData, useRouteError,
+} from 'react-router-dom'
+import { Show, TVShow } from './Shows'
 
 export default function Details() {
-  const [searchParams] = useSearchParams()
+  const show = useLoaderData() as Show | null
   
-  const name = searchParams.get('name')
+  if (!show) {
+    return (
+      <div className="Shows-error">
+        <h2>Error</h2>
+        <p>The show you're requesting is not found!</p>
+        <Link to="/">Back to all shows</Link>
+      </div>
+    )
+  }
   
   return (
-    <div className="about">
-      <h2>Show Details</h2>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui provident
-        consequuntur vel omnis quisquam rem harum, maxime expedita, ullam ut
-        dolore! Distinctio eos minima voluptatum totam id hic! Sapiente debitis
-        quia illum officia obcaecati provident nulla odio molestiae suscipit
-        quasi.
-      </p>
-      
+    <div className="ShowDetails">
+      <h2>{show.name}</h2>
+      <img src={show.image?.original} alt={show.name} />
+      <p>{show.summary}</p>
       <button>Book Movie Ticket</button>
+    </div>
+  )
+}
+
+// Data loader
+export async function detailsLoader({
+  params,
+}: {
+  params: { showId: string }
+}): Promise<Show | null> {
+  const { showId } = params
+  
+  try {
+    const res = await fetch(import.meta.env.PUBLIC_TVMAZE_SHOWS_API_URL)
+    const shows: TVShow[] = await res.json()
+    const show = shows.find(({ show }) => String(show.id) === showId)
+    return show?.show ?? null
+  } catch (error) {}
+  
+  throw new Error('Could not fetch the list of shows')
+}
+
+
+// Error page
+export function DetailsError() {
+  const error: any = useRouteError()
+  
+  return (
+    <div className="Shows-error">
+      <h2>Error</h2>
+      <p>{error.message}</p>
+      <Link to="/">Refresh</Link>
     </div>
   )
 }

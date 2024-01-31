@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { Link, useLoaderData, useRouteError } from 'react-router-dom'
 
-interface Show {
+export interface Show {
   id: number
   url: string
   name: string
@@ -63,42 +63,52 @@ interface Show {
   }
 }
 
-interface TVShow {
+export interface TVShow {
   score: number
   show: Show
 }
 
+
 export default function Shows() {
-  const [shows, setShows] = useState<TVShow[]>([])
-  
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          'https://api.tvmaze.com/search/shows?q=all',
-        )
-        const data = await response.json()
-        setShows(data)
-      } catch (error) {
-        console.error('Error fetching data:', error)
-      }
-    }
-    
-    fetchData()
-  }, [])
+  const shows = useLoaderData() as TVShow[]
   
   return (
     <div>
       <h1>TV Shows</h1>
       <ul>
-        {shows.map((show) => {console.log(show); return (
-          <li key={show.show.id}>
-            <img src={show.show.image?.medium} alt={show.show.name}/>
-            <p>{show.show.name}</p>
-            <button>View Summary</button>
+        {shows.map(({ show }) => (
+          <li key={show.id}>
+            <img src={show.image?.medium} alt={show.name}/>
+            <p>{show.name}</p>
+            <Link to={show.id.toString()} key={show.id}>View Summary</Link>
           </li>
-        )})}
+        ))}
       </ul>
+    </div>
+  )
+}
+
+
+// Data loader
+export async function showsLoader() {
+  try {
+    const res = await fetch(import.meta.env.PUBLIC_TVMAZE_SHOWS_API_URL)
+    return await res.json()
+  } catch (error) {}
+  
+  throw new Error('Could not fetch the list of shows')
+}
+
+
+// Error page
+export function ShowsError() {
+  const error: any = useRouteError()
+  
+  return (
+    <div className="Shows-error">
+      <h2>Error</h2>
+      <p>{error.message}</p>
+      <Link to="/">Refresh</Link>
     </div>
   )
 }
